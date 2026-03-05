@@ -1,0 +1,26 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ffmpeg-darwin-arm64
+            ffmpeg-darwin-x64
+            ffmpeg-win-x64.exe
+          generate_release_notes: true
+          make_latest: true
