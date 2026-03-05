@@ -15,6 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: sudo apt-get install -y p7zip-full
+
+      - name: Download FFmpeg binaries
+        run: python3 download_ffmpeg.py
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
